@@ -1,27 +1,22 @@
-let convictions = []
+let crimes = []
 
-export const useConvictions = () => convictions
+export const useConvictions = () => crimes
 
 export const getConvictions = () => {
-    return fetch("http://criminals.glassdale.us/criminals", {
+    
+    return fetch("http://criminals.glassdale.us/crimes", {
+    
     method: "GET"    
 })
-    .then(response => response.json())
-    // .then(
-    //         parsedCriminals => {
-    //             console.table(parsedCriminals)
-    //             criminals = parsedCriminals.slice()
-    //         }
-    //     )
-    .then(
-         parsedConvictions => {
-             console.log(parsedConvictions)
-             convictions = parsedConvictions.slice()
+
+.then(response => response.json())
+  .then(
+         parsedCrimes => {
+
+             crimes = parsedCrimes.slice()
+
          }
     )
-    /*
-        Load database state into application state with a fetch().
-        Make sure the last `then()` sets the local `convictions`
-        variable to what is in the response from the API.
-    */
+   
 }
+export default getConvictions
