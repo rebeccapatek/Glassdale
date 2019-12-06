@@ -5,28 +5,35 @@
 import { useConvictions } from "./ConvictionProvider.js"
 
 // Get a reference to the DOM element where the <select> will be rendered
+const eventHub = document.querySelector(".container")
 const contentTarget = document.querySelector(".filters__crime")
 
 export const ConvictionSelect = () => {
     // Get all convictions from application state
     const convictions = useConvictions()
+    console.log(convictions)
+    eventHub.addEventListener("change", changeEvent => {
+        if (changeEvent.target.classList.contains("dropdown")) {
+            const selectedCrime = changeEvent.target.value.split("-").join(" ")
+            const message = new CustomEvent("convictionSelected", {
+                detail: {
+                    crime: selectedCrime
+                }
+            })
+            eventHub.dispatchEvent(message)
+        }
+    })
 
     const render = convictionsCollection => {
-        
-        /*
-            Use interpolation here to invoke the map() method on
-            the convictionsCollection to generate the option elements.
-            Look back at the example provided above.
-        */
+        console.log(convictionsCollection)
+        let options = convictionsCollection.map(conviction => `<option value=${conviction.split(" ").join("-")}>${conviction}</option>
+        ` ).join(" ")
+        console.log(options)
+
         contentTarget.innerHTML = `
             <select class="dropdown" id="crimeSelect">
                 <option value="0">Please select a crime...</option>
-                ${
-                    convictions.map(criminal =>
-                        `<option>${criminal.conviction.split(" ")[0]}</option>
-                        `
-                        )
-                }
+                ${options}
 
             </select>
         `
@@ -34,14 +41,3 @@ export const ConvictionSelect = () => {
 
     render(convictions)
 }
-
-// const nameListContainer = document.querySelector(".names")
-
-// nameListContainer.innerHTML = `
-//     <select>
-//         ${
-//             names.map(name =>
-//                 `<option>${name.split(" ")[1]}</option>`
-//             )
-//         }
-//     </select>

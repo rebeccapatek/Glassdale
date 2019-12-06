@@ -4,12 +4,24 @@
 import { useCriminals } from "./CriminalDataProvider.js"
 import { CriminalComponent } from "./Criminal.js"
 
-
+const eventHub = document.querySelector(".container")
+const contentElement = document.querySelector(".criminalsContainer")
 const CriminalList = () => {
 
     // Get a reference to the `<article class="content">` element
-    const contentElement = document.querySelector(".criminalsContainer")
     const criminals = useCriminals()
+    eventHub.addEventListener("convictionSelected", event => {
+        const crime = event.detail.crime
+        const findingCriminalswhoDidACrime = criminals.filter(
+            (currentCriminal) => {
+                if (currentCriminal.conviction===crime) {
+                    return currentCriminal
+                }
+            }
+        )
+        render (findingCriminalswhoDidACrime)
+
+    })
     
 
     // let allFishHTML = ""
@@ -21,19 +33,17 @@ const CriminalList = () => {
 
     // Add to the existing HTML in the content element
 
-
-    contentElement.innerHTML += `
+let render = criminals => {
+contentElement.innerHTML = `
             ${
                 criminals.map(
-                    (currentCriminal) => {
-                       return CriminalComponent(currentCriminal)
-                    }
-                ).join("")
-                // could also be short handed as
-                // fishes.map(fish => FishComponent(fish)).join("")
+                    message => {
+                       return CriminalComponent(message)
+                    })
+                    .join("")}`
+           
             }
-       
-    `
+    
 }
 
 export default CriminalList
