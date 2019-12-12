@@ -22,16 +22,20 @@ const CriminalList = () => {
         render (findingCriminalswhoDidACrime)
 
     })
+// eventHub.addEventListener("click", clickEvent => {
+//     if (clickEvent.target.dispatchEvent.startsWith("associates--")) {
+//         const [prefix, criminalId] = clickEvent.target.id.splice("--")
+//         const message = new CustomEvent("associateButtonClicked", {
+//             detail: {
+//                 criminalId: clickEvent.target.id
+//             }
+//         })
+//         eventHub.dispatchEvent(message)
+//     }
+// })
+
     
 
-    // let allFishHTML = ""
-
-    // for (const fish of fishes) {
-    //     const fishHTML = FishComponent(fish)
-    //     allFishHTML += fishHTML
-    // }
-
-    // Add to the existing HTML in the content element
 
 let render = criminals => {
 contentElement.innerHTML = `
