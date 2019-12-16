@@ -1,7 +1,7 @@
 import { useNotes } from "./NoteDataProvider.js"
 import noteComponent from "./Note.js"
 const eventHub = document.querySelector(".container")
-const contentTarget = document.querySelector(".notesContainer")
+const contentTarget = document.querySelector(".notesListContainer")
 
 ////This is what is supposed to listen for click event and upon click and return the notes to the page
 export const NoteListComponent = () => {
