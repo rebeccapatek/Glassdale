@@ -1,7 +1,16 @@
 {
   "notes": [
     {
+      "noteDate": "",
+      "suspect": "",
+      "noteText": "",
       "id": 1
+    },
+    {
+      "noteDate": "",
+      "suspect": "",
+      "noteText": "",
+      "id": 2
     }
   ]
 }

@@ -7,12 +7,12 @@ import { useConvictions, getConvictions } from './convictions/ConvictionProvider
 import { useNotes, getNotes, saveNote } from '../notes/NoteDataProvider.js'
 import { NoteListComponent } from '../notes/NoteList.js'
 
-saveNote()
+
 getNotes().then(
     () => 
         NoteListComponent())
 NoteFormComponent()
-useNotes()
+
 getCriminals().then(CriminalList)
-useConvictions()
+
 getConvictions().then(ConvictionSelect)
